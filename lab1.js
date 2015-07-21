@@ -154,20 +154,28 @@ var tooHungryDay;
 */
 
 var j = 1;
-var totalMeals = mealsPerDay[0];
+var totalMeals = 0;
 var mealAvg = 0;
 var avgThreshold = true;
 
-do {
-  totalMeals += mealsPerDay[j];
-  mealAvg = Math.floor(totalMeals / j);
+// while (mealAvg >= 4 && j < mealsPerDay.length) {
+//   totalMeals += mealsPerDay[0];
+//   mealAvg = totalMeals/j;
+//   tooHungryDay = j;
+//   console.log(mealAvg + ' Avg meals/day by day ' + j);
+//   j++;
+// }
 
-  if (mealAvg <= 4) {
+do {
+  totalMeals += mealsPerDay[j - 1];
+  mealAvg = totalMeals / j;
+
+  if (mealAvg < 4) {
     tooHungryDay = j;
     console.log('The lion gave in to temptation on day ' + j);
     avgThreshold = false;
   } else {
-    console.log(mealAvg + ' Avg meals/day at day ' + j);
+    console.log(mealAvg + ' Avg meals/day by day ' + j);
     j++;
   }
 } while (avgThreshold && j < mealsPerDay.length);
